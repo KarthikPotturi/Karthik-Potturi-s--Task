@@ -37,8 +37,8 @@ INSERT INTO dbo.cf_product (name, price, qty, sale_start_date, sale_end_date, st
 INSERT INTO dbo.cf_product (name, price, qty, sale_start_date, sale_end_date, status, last_updated, create_date)
   VALUES ('Mangoes', 10.00, 150, '2023-01-01', '2024-12-31', 'L', GETDATE(), GETDATE())
 
-INSERT INTO dbo.cf_product (name, price, qty, sale_start_date, sale_end_date, status, last_updated, create_date)
-  VALUES ('Mangoes', 10.00, 150, '2023-01-01', '2024-12-31', 'L', GETDATE(), GETDATE())
+INSERT INTO dbo.cf_product(name, price, qty, sale_start_date, sale_end_date, status, last_updated, create_date)
+ VALUES('Banana', 2.00, 150, '2023-01-01', '2024-12-31', 'L', getDate(), getDate())
 
 INSERT INTO dbo.cf_product (name, price, qty, sale_start_date, sale_end_date, status, last_updated, create_date)
   VALUES ('Cake', 5.00, 50, '2023-09-01', '2023-10-30', 'L', GETDATE(), GETDATE())
