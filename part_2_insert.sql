@@ -21,6 +21,8 @@ update cf_customer set approved_date = getDate()-16 where cust_id = 7
 update cf_customer set approved_date = getDate()-18 where cust_id = 8
 update cf_customer set status= 'Rejected', remarks = 'Invalid device type', review_sys_userid=1 where cust_id = 9
 update cf_customer set status= 'Rejected', remarks = 'Invalid email', review_sys_userid=1 where cust_id = 10
+update cf_customer set status = 'Approved' where cust_id in (1,4,7)
+update cf_customer set approved_date=null where status = 'Pending Approval'
 
 -- cf_product
 INSERT INTO dbo.cf_product (name, price, qty, sale_start_date, sale_end_date, status, last_updated, create_date)
@@ -652,7 +654,17 @@ INSERT INTO dbo.cf_login_history (cust_id, channel, ipaddress, login_status, cre
   VALUES (1, 'Mobile', '113.84.2.1', 'Y', GETDATE() - 0)
 INSERT INTO dbo.cf_login_history (cust_id, channel, ipaddress, login_status, create_date)
   VALUES (1, 'Mobile', '15.0.0.1', 'Y', GETDATE() - 0)
-  
+
+-- cf_purchase
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (2, 1, 1, CAST(1.00 AS Decimal(10, 2)), CAST(N'2023-09-20T00:14:42.237' AS DateTime), N'Completed', NULL, N'Cash', CAST(N'2023-09-20T00:14:42.237' AS DateTime), N'Paid', CAST(N'2023-09-20T00:14:42.237' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (2, 10, CAST(50.50 AS Decimal(10, 2)), CAST(N'2023-09-13T00:15:47.500' AS DateTime), N'Completed', NULL, N'Credit Card', CAST(N'2023-09-12T00:15:47.500' AS DateTime), N'Paid', CAST(N'2023-09-13T00:15:47.500' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (2, 6, CAST(67.50 AS Decimal(10, 2)), CAST(N'2023-09-14T00:16:18.850' AS DateTime), N'Completed', NULL, N'Debit Card', CAST(N'2023-09-14T00:16:18.850' AS DateTime), N'Paid', CAST(N'2023-09-14T00:16:18.850' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (3, 9, CAST(109.50 AS Decimal(10, 2)), CAST(N'2023-09-28T00:16:57.327' AS DateTime), N'Completed', NULL, N'PayPal', CAST(N'2023-09-28T00:16:57.327' AS DateTime), N'Paid', CAST(N'2023-09-28T00:16:57.327' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (4, 9, CAST(109.50 AS Decimal(10, 2)), CAST(N'2023-09-10T00:17:56.047' AS DateTime), N'Failed', NULL, N'PayPal', CAST(N'2023-09-08T00:17:56.047' AS DateTime), N'Failed', CAST(N'2023-09-10T00:17:56.047' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (5, 19, CAST(1090.00 AS Decimal(10, 2)), CAST(N'2023-09-12T00:19:06.427' AS DateTime), N'Completed', NULL, N'Credit Card', CAST(N'2023-09-12T00:19:06.427' AS DateTime), N'Failed', CAST(N'2023-09-12T00:19:06.427' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (6, 12, CAST(18.50 AS Decimal(10, 2)), CAST(N'2023-09-25T03:02:24.543' AS DateTime), N'Failed', NULL, N'PayPal', CAST(N'2023-09-25T03:02:24.543' AS DateTime), N'Refund in way', CAST(N'2023-09-25T03:02:24.543' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES (7, 4, CAST(20.00 AS Decimal(10, 2)), CAST(N'2023-09-28T03:04:31.187' AS DateTime), N'Failed', NULL, N'PayPal', CAST(N'2023-09-28T03:04:31.187' AS DateTime), N'Failed', CAST(N'2023-09-28T03:04:31.187' AS DateTime))
+INSERT dbo.cf_purchase (cust_id, item_count, total_amt, purchase_date, payment_status, trx_id, payment_method, payment_date, status, create_date) VALUES ( 8, 14, CAST(120.50 AS Decimal(10, 2)), CAST(N'2023-09-08T03:05:05.000' AS DateTime), N'Completed', NULL, N'PayPal', CAST(N'2023-09-08T03:05:05.000' AS DateTime), N'Paid', CAST(N'2023-09-08T03:05:05.000' AS DateTime))
 
 -- cf_purchases_line_item
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
