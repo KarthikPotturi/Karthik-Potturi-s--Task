@@ -10,8 +10,8 @@ WITH LoginCounts AS (
         DATENAME(WEEKDAY, create_date)
 )
 SELECT
-    day_of_week,
-    login_count AS total_quantity
+    day_of_week AS HIGHEST_NUMBER_OF_LOGIN_DAY,
+    login_count AS TOTAL_QUANTITY
 FROM
     LoginCounts
 WHERE
@@ -20,8 +20,8 @@ WHERE
 UNION ALL
 
 SELECT
-    day_of_week,
-    login_count AS total_quantity
+    day_of_week AS HIGHEST_NUMBER_OF_LOGIN_DAY,
+    login_count AS TOTAL_QUANTITY
 FROM
     LoginCounts
 WHERE
