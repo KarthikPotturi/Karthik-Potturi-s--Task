@@ -113,9 +113,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
+-- Author: Karthik Potturi
+-- Create date: 29/09/2023
+-- Description:	Stored Procedure which inserts the data to cf_customer table
 -- =============================================
 CREATE PROCEDURE [dbo].[insertCustomer] 
 	@email nvarchar(100),
@@ -146,25 +146,19 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author: Karthik Potturi		<Author,,Name>
+-- Author: Karthik Potturi
 -- Create date: 29/09/2023
 -- Description:	Returns the count of successful logins for a customer id
 -- =============================================
 CREATE FUNCTION [dbo].[getUserLoginCount]
 (
-	-- Add the parameters for the function here
 	@cust_id bigint
 )
 RETURNS int
 AS
 BEGIN
-	-- Declare the return variable here
 	DECLARE @count int
-
-	-- Add the T-SQL statements to compute the return value here
 	set @count = (select count(id) from cf_login_history where login_status='Y' and cust_id=@cust_id)
-
-	-- Return the result of the function
 	RETURN @count
 
 END
@@ -175,25 +169,19 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author: Karthik Potturi	<Author,,Name>
+-- Author: Karthik Potturi
 -- Create date: 29/09/2023
 -- Description:	Returns the count of purchases for a customer id
 -- =============================================
 CREATE FUNCTION [dbo].[getUserPurchaseCount]
 (
-	-- Add the parameters for the function here
 	@cust_id bigint
 )
 RETURNS int
 AS
 BEGIN
-	-- Declare the return variable here
 	DECLARE @count int
-
-	-- Add the T-SQL statements to compute the return value here
 	set @count = (select count(purchase_id) from cf_purchase where cust_id=@cust_id and status='Completed' and payment_status='Paid')
-
-	-- Return the result of the function
 	RETURN @count
 
 END
