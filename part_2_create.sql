@@ -28,7 +28,10 @@ CREATE TABLE [dbo].[cf_customer](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[cf_login_history](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
 	[cust_id] [bigint] NOT NULL,
@@ -50,8 +53,8 @@ GO
 CREATE TABLE [dbo].[cf_product](
 	[pid] [bigint] IDENTITY(1,1) NOT NULL,
 	[name] [nvarchar](50) NULL,
-	[price] [decimal](10, 2) NULL,
-	[qty] [bigint] NULL,
+	[price] [decimal](10, 2) NOT NULL,
+	[qty] [int] NOT NULL,
 	[sale_start_date] [datetime] NULL,
 	[sale_end_date] [datetime] NULL,
 	[status] [char](1) NULL,
@@ -93,12 +96,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[cf_purchases_line_item](
 	[line_id] [bigint] IDENTITY(1,1) NOT NULL,
-	[purchase_id] [bigint] NULL,
-	[pid] [bigint] NULL,
+	[purchase_id] [bigint] NOT NULL,
+	[pid] [bigint] NOT NULL,
 	[name] [nvarchar](50) NULL,
-	[qty] [int] NULL,
-	[price] [decimal](10, 2) NULL,
-	[subtotal] [decimal](18, 2) NULL,
+	[qty] [int] NOT NULL,
+	[price] [decimal](10, 2) NOT NULL,
+	[subtotal] [decimal](10, 2) NOT NULL,
 	[create_date] [datetime] NULL,
  CONSTRAINT [PK_cf_purchases_line_item] PRIMARY KEY CLUSTERED 
 (
@@ -113,9 +116,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author: Karthik Potturi
+-- Author:		Karthik Potturi
 -- Create date: 29/09/2023
--- Description:	Stored Procedure which inserts the data to cf_customer table
+-- Description:	Stored Procedure to insert data into cf_customer table
 -- =============================================
 CREATE PROCEDURE [dbo].[insertCustomer] 
 	@email nvarchar(100),
@@ -127,10 +130,7 @@ CREATE PROCEDURE [dbo].[insertCustomer]
 	@ipaddress nvarchar(50)
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-    -- Insert statements for procedure here
 	insert into cf_customer
 		(
 			email, password, first_name, last_name, contactno, pwd_failed_count,
@@ -141,14 +141,15 @@ BEGIN
 END
 GO
 
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author: Karthik Potturi
+-- Author:		Karthik Potturi
 -- Create date: 29/09/2023
--- Description:	Returns the count of successful logins for a customer id
+-- Description:	Returns no. of logins for a customer
 -- =============================================
 CREATE FUNCTION [dbo].[getUserLoginCount]
 (
@@ -164,14 +165,15 @@ BEGIN
 END
 GO
 
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author: Karthik Potturi
+-- Author:		Karthik Potturi
 -- Create date: 29/09/2023
--- Description:	Returns the count of purchases for a customer id
+-- Description:	Returns no. of purchases for a customer 
 -- =============================================
 CREATE FUNCTION [dbo].[getUserPurchaseCount]
 (
@@ -181,7 +183,7 @@ RETURNS int
 AS
 BEGIN
 	DECLARE @count int
-	set @count = (select count(purchase_id) from cf_purchase where cust_id=@cust_id and status='Completed' and payment_status='Paid')
+	set @count = (select count(purchase_id) from cf_purchase where cust_id=@cust_id and payment_status='Completed' and status='Paid')
 	RETURN @count
 
 END
