@@ -656,36 +656,36 @@ INSERT INTO dbo.cf_login_history (cust_id, channel, ipaddress, login_status, cre
 
 -- cf_purchases_line_item
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (2, 1, 'Apples', 10, 1.55, NULL, GETDATE() - 23)
+  VALUES (2, 1, 'Apples', 10, 1.55, 0, GETDATE() - 23)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (2, 5, 'Banana', 6, 2.00, NULL, GETDATE() - 23)
+  VALUES (2, 5, 'Banana', 6, 2.00, 0, GETDATE() - 23)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (2, 4, 'Mangoes', 6, 10.00, NULL, GETDATE() - 23)
+  VALUES (2, 4, 'Mangoes', 6, 10.00, 0, GETDATE() - 23)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (3, 2, 'Oranges', 6, 3.55, NULL, GETDATE() - 12)
+  VALUES (3, 2, 'Oranges', 6, 3.55, 0, GETDATE() - 12)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (4, 4, 'Mangoes', 3, 10.00, NULL, GETDATE() - 8)
+  VALUES (4, 4, 'Mangoes', 3, 10.00, 0, GETDATE() - 8)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (4, 3, 'Kiwi', 3, 3.50, NULL, GETDATE() - 8)
+  VALUES (4, 3, 'Kiwi', 3, 3.50, 0, GETDATE() - 8)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (5, 3, 'Kiwi', 4, 3.50, NULL, GETDATE() - 3)
+  VALUES (5, 3, 'Kiwi', 4, 3.50, 0, GETDATE() - 3)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (6, 5, 'Banana', 5, 2.00, NULL, GETDATE() - 16)
+  VALUES (6, 5, 'Banana', 5, 2.00, 0, GETDATE() - 16)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (6, 1, 'Apples', 5, 1.55, NULL, GETDATE() - 16)
+  VALUES (6, 1, 'Apples', 5, 1.55, 0, GETDATE() - 16)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (6, 3, 'Oranges', 5, 3.55, NULL, GETDATE() - 16)
+  VALUES (6, 3, 'Oranges', 5, 3.55, 0, GETDATE() - 16)
 
 INSERT INTO dbo.cf_purchases_line_item (purchase_id, pid, name, qty, price, subtotal, create_date)
-  VALUES (5, 2, 'Oranges', 14, 3.55, NULL, GETDATE() - 3)
+  VALUES (5, 2, 'Oranges', 14, 3.55, 0, GETDATE() - 3)
 
 update cf_purchases_line_item set subtotal = qty* price
