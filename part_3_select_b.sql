@@ -2,9 +2,9 @@
 Approach - 1
 /*--------------*/
 SELECT
-    c.email,
-    COUNT(DISTINCT lh.id) AS total_logins,
-    COUNT(DISTINCT p.purchase_id) AS total_purchases
+    c.email as EMAIL,
+    COUNT(DISTINCT lh.id) AS TOTAL_LOGINS,
+    COUNT(DISTINCT p.purchase_id) AS TOTAL_PURCHASES
 FROM
     cf_customer c
 LEFT JOIN
@@ -21,7 +21,7 @@ Approach - 2
 /*--------------*/
 dbo.getUserLoginCount and dbo.getUserPurchaseCount are Functions that return the counts
 SELECT 
-	email, 
-	dbo.getUserLoginCount(cust_id) as Total_Logins, 
-	dbo.getUserPurchaseCount(cust_id) as Total_Purchase
+	email as EMAIL, 
+	dbo.getUserLoginCount(cust_id) as TOTAL_LOGINS, 
+	dbo.getUserPurchaseCount(cust_id) as TOTAL_LOGINS
 from cf_customer
